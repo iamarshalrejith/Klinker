@@ -71,7 +71,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full bg-gray-400 hover:bg-gray-500 text-black py-2 rounded-lg transition duration-200"
+            className="w-full bg-gray-400 hover:text-white hover:bg-gray-600 text-black py-2 rounded-lg transition duration-200"
           >
             Sign Up
           </button>
@@ -80,7 +80,7 @@ const Signup = () => {
             Already have an account?{" "}
             <a
               href="/login"
-              className="text-gray-400 hover:underline hover:text-gray-900"
+              className="text-gray-800 underline hover:text-gray-900"
             >
               Login
             </a>
