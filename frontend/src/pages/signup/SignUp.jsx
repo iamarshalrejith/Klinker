@@ -1,9 +1,12 @@
-import GenderCheckbox from "./GenderCheckbox"; 
-import { useEffect, useRef } from "react";
+import GenderCheckbox from "./GenderCheckbox";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Link } from "react-router";
+import useSignup from "../../hooks/useSignup";
 
 const Signup = () => {
   const cardRef = useRef(null);
+  const { signup, loading } = useSignup();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -18,6 +21,22 @@ const Signup = () => {
     return () => ctx.revert();
   }, []);
 
+  const [inputs, setInputs] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
+
+  const handleCheckboxChange = (gender) => {
+    setInputs({ ...inputs, gender });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(inputs);
+  };
   return (
     <div className="flex items-center justify-center min-h-screen w-full px-4">
       <div
@@ -28,13 +47,17 @@ const Signup = () => {
           Sign Up
         </h1>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-black text-sm mb-1">Full Name</label>
             <input
               type="text"
               className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
               placeholder="e.g. Jane Doe"
+              value={inputs.fullName}
+              onChange={(e) => {
+                setInputs({ ...inputs, fullName: e.target.value });
+              }}
             />
           </div>
 
@@ -44,6 +67,10 @@ const Signup = () => {
               type="text"
               className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
               placeholder="yourUsername"
+              value={inputs.username}
+              onChange={(e) => {
+                setInputs({ ...inputs, username: e.target.value });
+              }}
             />
           </div>
 
@@ -53,21 +80,33 @@ const Signup = () => {
               type="password"
               className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
               placeholder="••••••••"
+              value={inputs.password}
+              onChange={(e) => {
+                setInputs({ ...inputs, password: e.target.value });
+              }}
             />
           </div>
 
           <div>
-            <label className="block text-black text-sm mb-1">Confirm Password</label>
+            <label className="block text-black text-sm mb-1">
+              Confirm Password
+            </label>
             <input
               type="password"
               className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
               placeholder="••••••••"
+              value={inputs.confirmPassword}
+              onChange={(e) => {
+                setInputs({ ...inputs, confirmPassword: e.target.value });
+              }}
             />
           </div>
 
           {/* Gender selection */}
-          <GenderCheckbox />
-          
+          <GenderCheckbox
+            onCheckboxChange={handleCheckboxChange}
+            selectedGender={inputs.gender}
+          />
 
           <button
             type="submit"
@@ -78,12 +117,12 @@ const Signup = () => {
 
           <p className="text-sm text-center text-black mt-2">
             Already have an account?{" "}
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="text-gray-800 underline hover:text-gray-900"
             >
               Login
-            </a>
+            </Link>
           </p>
         </form>
       </div>

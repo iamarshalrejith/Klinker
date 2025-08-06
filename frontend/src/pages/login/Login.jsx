@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { Link } from "react-router";
 
 const Login = () => {
   const cardRef = useRef(null);
@@ -54,12 +55,12 @@ const Login = () => {
           </button>
           <p className="text-sm text-center text-black mt-2">
             Don’t have an account?{" "}
-            <a
-              href="/register"
+            <Link
+              to="/signup"
               className="text-gray-800 underline hover:text-gray-900"
             >
               Register
-            </a>
+            </Link>
           </p>
         </form>
       </div>
