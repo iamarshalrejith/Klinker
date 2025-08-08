@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router";
+import useLogin from "../../hooks/useLogin"; 
 
 const Login = () => {
   const cardRef = useRef(null);
@@ -14,9 +15,18 @@ const Login = () => {
         ease: "power2.out",
       });
     });
-
     return () => ctx.revert();
   }, []);
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { loading, login } = useLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(username, password); // fixed call and spelling
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen w-full px-4 sm:px-6 md:px-8">
@@ -28,13 +38,15 @@ const Login = () => {
           Login
         </h1>
 
-        <form className="space-y-3 sm:space-y-4">
+        <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-black text-sm mb-1">Username</label>
             <input
               type="text"
               className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -44,14 +56,21 @@ const Login = () => {
               type="password"
               className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <button
             type="submit"
             className="w-full bg-gray-400 hover:text-white hover:bg-gray-600 text-black py-2 sm:py-2.5 rounded-lg transition duration-200 text-sm sm:text-base"
+            disabled={loading}
           >
-            Sign In
+            {loading ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              "Sign In"
+            )}
           </button>
 
           <p className="text-xs sm:text-sm text-center text-black mt-2">

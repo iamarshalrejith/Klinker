@@ -2,7 +2,7 @@ import GenderCheckbox from "./GenderCheckbox";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router";
-import useSignup from "../../hooks/useSignup";
+import useSignup from "../../hooks/useSignup.js";
 
 const Signup = () => {
   const cardRef = useRef(null);
