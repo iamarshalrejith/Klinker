@@ -15,25 +15,25 @@ const Login = () => {
       });
     });
 
-    return () => ctx.revert(); 
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen w-full px-4">
+    <div className="flex items-center justify-center min-h-screen w-full px-4 sm:px-6 md:px-8">
       <div
         ref={cardRef}
-        className="bg-white/20 backdrop-blur-lg shadow-xl rounded-xl p-10 w-full max-w-md"
+        className="bg-white/20 backdrop-blur-lg shadow-xl rounded-xl p-6 sm:p-8 md:p-10 w-full max-w-sm sm:max-w-md"
       >
-        <h1 className="text-3xl font-bold text-center text-black mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-4 sm:mb-6">
           Login
         </h1>
 
-        <form className="space-y-4">
+        <form className="space-y-3 sm:space-y-4">
           <div>
             <label className="block text-black text-sm mb-1">Username</label>
             <input
               type="text"
-              className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
+              className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="username"
             />
           </div>
@@ -42,18 +42,19 @@ const Login = () => {
             <label className="block text-black text-sm mb-1">Password</label>
             <input
               type="password"
-              className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
+              className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="••••••••"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-gray-400 hover:text-white hover:bg-gray-600 text-black py-2 rounded-lg transition duration-200"
+            className="w-full bg-gray-400 hover:text-white hover:bg-gray-600 text-black py-2 sm:py-2.5 rounded-lg transition duration-200 text-sm sm:text-base"
           >
             Sign In
           </button>
-          <p className="text-sm text-center text-black mt-2">
+
+          <p className="text-xs sm:text-sm text-center text-black mt-2">
             Don’t have an account?{" "}
             <Link
               to="/signup"

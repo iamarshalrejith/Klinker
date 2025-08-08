@@ -7,25 +7,20 @@ const MessageContainer = () => {
   const [selectedChat, setSelectedChat] = useState(false);
 
   return (
-    <div className="md:min-w-[450px] flex flex-col bg-white/20 backdrop-blur-lg rounded-xl shadow-md border border-white/30">
+    <div className="flex flex-col flex-1 h-full bg-white/20 backdrop-blur-lg shadow-md 
+      rounded-none md:rounded-r-xl border border-white/30 md:border-l-0 border-t md:border-t-0">
       {selectedChat ? (
         <>
-          {/* Header */}
-          <div className="bg-slate-500/70 px-4 py-2 rounded-t-xl">
+          <div className="bg-slate-500/70 px-4 py-2 md:rounded-tr-xl">
             <span className="label-text text-white">To: </span>
             <span className="text-white font-bold">John Doe</span>
           </div>
-
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto">
             <Messages />
           </div>
-
-          {/* Message Input */}
           <MessageInput />
         </>
       ) : (
-        // NoChatSelected UI
         <div className="flex flex-1 items-center justify-center text-center px-6 py-8">
           <div className="text-black font-semibold flex flex-col items-center gap-2">
             <p className="text-lg md:text-xl">Welcome, John Doe 👋</p>

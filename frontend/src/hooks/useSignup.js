@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useAuthContext } from "../context/AuthContext";
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
+  const { setAuthUser } = useAuthContext();
 
   const signup = async ({
     fullName,
@@ -35,7 +37,6 @@ const useSignup = () => {
         }),
       });
 
-      // ✅ Only try to parse JSON if Content-Type is correct
       const contentType = res.headers.get("Content-Type");
       let data = null;
 
@@ -48,8 +49,10 @@ const useSignup = () => {
       } else {
         toast.success(data?.message || "Signup successful!");
       }
-
-      console.log("Server Response:", data);
+      //localstorage
+      localStorage.setItem("chat-user", JSON.stringify(data));
+      //context
+      setAuthUser(data);
     } catch (error) {
       toast.error("Network error: " + error.message);
     } finally {

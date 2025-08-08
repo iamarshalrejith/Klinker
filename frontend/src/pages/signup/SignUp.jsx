@@ -37,27 +37,28 @@ const Signup = () => {
     e.preventDefault();
     await signup(inputs);
   };
+
   return (
-    <div className="flex items-center justify-center min-h-screen w-full px-4">
+    <div className="flex items-center justify-center min-h-screen w-full px-4 sm:px-6 md:px-8">
       <div
         ref={cardRef}
-        className="bg-white/20 backdrop-blur-lg shadow-xl rounded-xl p-10 w-full max-w-md"
+        className="bg-white/20 backdrop-blur-lg shadow-xl rounded-xl p-6 sm:p-8 md:p-10 w-full max-w-sm sm:max-w-md"
       >
-        <h1 className="text-3xl font-bold text-center text-black mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-4 sm:mb-6">
           Sign Up
         </h1>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-black text-sm mb-1">Full Name</label>
             <input
               type="text"
-              className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
+              className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="e.g. Jane Doe"
               value={inputs.fullName}
-              onChange={(e) => {
-                setInputs({ ...inputs, fullName: e.target.value });
-              }}
+              onChange={(e) =>
+                setInputs({ ...inputs, fullName: e.target.value })
+              }
             />
           </div>
 
@@ -65,12 +66,12 @@ const Signup = () => {
             <label className="block text-black text-sm mb-1">Username</label>
             <input
               type="text"
-              className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
+              className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="yourUsername"
               value={inputs.username}
-              onChange={(e) => {
-                setInputs({ ...inputs, username: e.target.value });
-              }}
+              onChange={(e) =>
+                setInputs({ ...inputs, username: e.target.value })
+              }
             />
           </div>
 
@@ -78,12 +79,12 @@ const Signup = () => {
             <label className="block text-black text-sm mb-1">Password</label>
             <input
               type="password"
-              className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
+              className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="••••••••"
               value={inputs.password}
-              onChange={(e) => {
-                setInputs({ ...inputs, password: e.target.value });
-              }}
+              onChange={(e) =>
+                setInputs({ ...inputs, password: e.target.value })
+              }
             />
           </div>
 
@@ -93,12 +94,12 @@ const Signup = () => {
             </label>
             <input
               type="password"
-              className="w-full px-4 py-2 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black"
+              className="w-full px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 text-black text-sm sm:text-base"
               placeholder="••••••••"
               value={inputs.confirmPassword}
-              onChange={(e) => {
-                setInputs({ ...inputs, confirmPassword: e.target.value });
-              }}
+              onChange={(e) =>
+                setInputs({ ...inputs, confirmPassword: e.target.value })
+              }
             />
           </div>
 
@@ -110,12 +111,12 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full bg-gray-400 hover:text-white hover:bg-gray-600 text-black py-2 rounded-lg transition duration-200"
+            className="w-full bg-gray-400 hover:text-white hover:bg-gray-600 text-black py-2 sm:py-2.5 rounded-lg transition duration-200 text-sm sm:text-base"
           >
-            Sign Up
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
 
-          <p className="text-sm text-center text-black mt-2">
+          <p className="text-xs sm:text-sm text-center text-black mt-2">
             Already have an account?{" "}
             <Link
               to="/login"
