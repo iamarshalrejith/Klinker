@@ -1,26 +1,48 @@
-const Conversation = () => {
+import useConversation from "../../zustand/useConversation.js";
+
+const Conversation = ({ conversation, lastIdx }) => {
+  const firstLetter = conversation.fullName?.[0]?.toUpperCase() || "?";
+
+  const { selectedConversation, setSelectedConversation } = useConversation();
+  const isSelected = selectedConversation?._id === conversation._id;
+
   return (
     <>
-      <div className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-sky-500/30 transition-all">
-        <div className="avatar online">
-          <div className="w-12 rounded-full">
-            <img
-              src="https://ui-avatars.com/api/?name=John+Doe"
-              alt="User Avatar"
-            />
-          </div>
+      <div
+        className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-400/30 transition-all ${
+          isSelected ? "bg-indigo-600 text-white" : ""
+        }`}
+        onClick={() => setSelectedConversation(conversation)}
+      >
+        <div
+          className={`flex items-center justify-center w-12 h-12 rounded-full font-bold text-lg ${
+            isSelected ? "bg-white text-indigo-600" : "bg-gray-400 text-black"
+          }`}
+        >
+          {firstLetter}
         </div>
 
         <div className="flex-1">
           <div className="flex justify-between items-center">
-            <p className="font-semibold text-gray-800">John Doe</p>
-            <span className="text-xl">💬</span>
+            <p
+              className={`font-semibold ${
+                isSelected ? "text-white" : "text-gray-800"
+              }`}
+            >
+              {conversation.fullName}
+            </p>
           </div>
-          <p className="text-sm text-gray-500 truncate">Hey, how's it going?</p>
+          <p
+            className={`text-sm truncate ${
+              isSelected ? "text-indigo-100" : "text-gray-500"
+            }`}
+          >
+            Hey there! I am using Klinker
+          </p>
         </div>
       </div>
 
-      <div className="divider my-0" />
+      {!lastIdx && <div className="divider my-0" />}
     </>
   );
 };
