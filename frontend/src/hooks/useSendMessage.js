@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useConversation from "../zustand/useConversation";
-import { toast } from "react-hot-toast"; // make sure toast is imported
+import { toast } from "react-hot-toast";
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
@@ -18,9 +18,14 @@ const useSendMessage = () => {
       });
 
       const data = await res.json();
+      console.log("API response data:", data); // Debug log
+      
       if (data.error) throw new Error(data.error);
 
-      setMessages((messages) => [...messages, data.message]);
+      // FIX: Use the 'messages' array from Zustand directly and create a new array.
+      // This correctly updates the state to be the new array, not a function.
+      setMessages([...messages, data]);
+
     } catch (error) {
       toast.error(error.message);
     } finally {

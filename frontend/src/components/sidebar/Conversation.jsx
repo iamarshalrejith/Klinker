@@ -1,8 +1,6 @@
 import useConversation from "../../zustand/useConversation.js";
 
 const Conversation = ({ conversation, lastIdx }) => {
-  const firstLetter = conversation.fullName?.[0]?.toUpperCase() || "?";
-
   const { selectedConversation, setSelectedConversation } = useConversation();
   const isSelected = selectedConversation?._id === conversation._id;
 
@@ -14,12 +12,12 @@ const Conversation = ({ conversation, lastIdx }) => {
         }`}
         onClick={() => setSelectedConversation(conversation)}
       >
-        <div
-          className={`flex items-center justify-center w-12 h-12 rounded-full font-bold text-lg ${
-            isSelected ? "bg-white text-indigo-600" : "bg-gray-400 text-black"
-          }`}
-        >
-          {firstLetter}
+        <div className="w-12 h-12 rounded-full overflow-hidden">
+          <img 
+            src={conversation.profilePic} 
+            alt={`${conversation.fullName}'s profile`} 
+            className="w-full h-full object-cover"
+          />
         </div>
 
         <div className="flex-1">
