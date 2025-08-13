@@ -17,7 +17,6 @@ const Signup = () => {
         ease: "power2.out",
       });
     });
-
     return () => ctx.revert();
   }, []);
 
@@ -42,13 +41,22 @@ const Signup = () => {
     <div className="flex items-center justify-center min-h-screen w-full px-4 sm:px-6 md:px-8">
       <div
         ref={cardRef}
-        className="bg-white/20 backdrop-blur-lg shadow-xl rounded-xl p-6 sm:p-8 md:p-10 w-full max-w-sm sm:max-w-md"
+        className="bg-white/20 backdrop-blur-lg shadow-xl rounded-xl p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-md"
       >
-        <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-4 sm:mb-6">
+        {/* Logo */}
+        <div className="flex justify-center mb-3">
+          <img
+            src="/fav-icon.png"
+            alt="Logo"
+            className="w-12 h-12 sm:w-16 sm:h-16 rounded-3xl"
+          />
+        </div>
+
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-3 sm:mb-4">
           Sign Up
         </h1>
 
-        <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-2 sm:space-y-3" onSubmit={handleSubmit}>
           <div>
             <label className="block text-black text-sm mb-1">Full Name</label>
             <input

@@ -4,31 +4,46 @@ import { TiMessages } from "react-icons/ti";
 import useConversation from "../../zustand/useConversation.js";
 import { useEffect } from "react";
 import { useAuthContext } from "../../context/AuthContext";
+import useListenMessages from "../../hooks/useListenMessages.js";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
+  useListenMessages();
 
   useEffect(() => {
+    // Cleanup for mobile navigation
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);
 
+  const handleGoBack = () => {
+    setSelectedConversation(null);
+  };
+
   return (
-    <div className="flex flex-col flex-1 h-full bg-white/20 backdrop-blur-lg shadow-md 
-      rounded-none md:rounded-r-xl border border-white/30 md:border-l-0 border-t md:border-t-0">
-      
+    <div className="flex flex-col flex-1 h-full bg-white/20 backdrop-blur-lg shadow-md rounded-none md:rounded-r-xl border border-white/30 md:border-l-0">
       {selectedConversation ? (
         <>
-          <div className="bg-slate-500/70 px-4 py-2 md:rounded-tr-xl">
-            <span className="label-text text-white">To: </span>
-            <span className="text-white font-bold">
+          {/* Header */}
+          <div className="bg-indigo-600 px-3 py-3 md:px-4 md:py-5 flex items-center gap-2">
+            {/* Back button only on mobile */}
+            <button
+              className="md:hidden text-white shrink-0"
+              onClick={handleGoBack}
+            >
+              <IoArrowBackOutline size={20} />
+            </button>
+            <span className="label-text text-white shrink-0">To:</span>
+            {/* Name will truncate on small screens */}
+            <span className="text-white font-bold ml-1 truncate">
               {selectedConversation.fullName}
             </span>
           </div>
 
-          <div className="flex-1 overflow-y-auto">
-            <Messages />
-          </div>
+          {/* Chat messages */}
+          <Messages />
 
+          {/* Input box */}
           <MessageInput />
         </>
       ) : (

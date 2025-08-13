@@ -25,7 +25,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(username, password); // fixed call and spelling
+    await login(username, password);
   };
 
   return (
@@ -34,6 +34,15 @@ const Login = () => {
         ref={cardRef}
         className="bg-white/20 backdrop-blur-lg shadow-xl rounded-xl p-6 sm:p-8 md:p-10 w-full max-w-sm sm:max-w-md"
       >
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          <img
+            src="/fav-icon.png"
+            alt="Logo"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl"
+          />
+        </div>
+
         <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-4 sm:mb-6">
           Login
         </h1>
