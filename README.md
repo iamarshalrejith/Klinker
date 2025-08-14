@@ -2,7 +2,7 @@
 
 A modern, real-time chat application built with the MERN stack and Socket.IO for seamless communication.
 
-![Klinker Chat App]()
+[Klinker Chat App](https://klinker.onrender.com/login)
 
 ## ✨ Features
 
@@ -149,7 +149,7 @@ node -e "console.log(require('crypto').randomBytes(64).toString('base64'))"
 
 ## 📄 License
 
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👤 Author
 
